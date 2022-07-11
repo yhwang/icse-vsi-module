@@ -32,3 +32,13 @@ dedicated_host_group             | string                                       
 default_trusted_profile_target   | string                                                                                                                                                                         | (Optional) The unique identifier or CRN of the default IAM trusted profile to use for this virtual server instance.                                                                     |           | null
 metadata_service_enabled         | bool                                                                                                                                                                           | (Optional) Indicates whether the metadata service endpoint is available to the virtual server instance. Default value : false                                                           |           | null
 placement_group                  | string                                                                                                                                                                         | (Optional) Unique Identifier of the Placement Group for restricting the placement of the instance                                                                                       |           | null
+
+## Module Outputs
+
+Name                   | Description
+---------------------- | ---------------------------------------
+id                     | Virtual Server ID
+name                   | Virtual Server name
+primary_ipv4_address   | Primary ipv4 address for virtual server
+floating_ip            | Floating IP if created
+secondary_floating_ips | List of secondary floating IPs

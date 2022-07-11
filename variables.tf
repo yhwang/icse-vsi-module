@@ -82,7 +82,7 @@ variable "image_id" {
 }
 
 variable "profile" {
-  description = "Type of machine profile for VSI. Use the command `ibm is instance-profiles` to find available profiles in your region"
+  description = "Type of machine profile for VSI. Use the command `ibmcloud is instance-profiles` to find available profiles in your region"
   type        = string
   default     = "bx2-2x8"
 }

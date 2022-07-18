@@ -10,7 +10,7 @@ locals {
       ? true
       : length([
         for name in var.secondary_floating_ips :
-        true if !contains(var.secondary_subnets, name)
+        true if !contains(var.secondary_subnets.*.shortname, name)
       ]) == 0
     )
   )

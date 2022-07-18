@@ -61,8 +61,10 @@ resource "ibm_is_floating_ip" "secondary_fip" {
   for_each = {
     for interface in var.secondary_floating_ips :
     (interface) => {
-      name   = "${var.prefix}-${var.name}-secondary-fip-${index(var.secondary_floating_ips, interface) + 1}"
-      target = ibm_is_instance.vsi.network_interfaces[index(var.secondary_floating_ips, interface)].id
+      name = "${var.prefix}-${var.name}-secondary-fip-${index(var.secondary_floating_ips, interface) + 1}"
+      target = ibm_is_instance.vsi.network_interfaces[
+        index(var.secondary_subnets.*.shortname, interface)
+      ].id
     }
   }
   name   = each.key

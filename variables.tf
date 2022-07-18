@@ -58,6 +58,7 @@ variable "secondary_subnets" {
     object({
       name              = string                 # arbitrary name for attaching floating IPs
       id                = string                 # subnet id
+      shortname         = optional(string)       # shortname of secondary interface used to attach fips
       security_groups   = optional(list(string)) # list of security groups to add 
       allow_ip_spoofing = optional(bool)         # allow ip spoofing
     })
@@ -154,7 +155,7 @@ variable "block_storage_volumes" {
 ##############################################################################
 
 variable "secondary_floating_ips" {
-  description = "List of secondary interfaces to add floating ips"
+  description = "List of secondary interface shortnames to add floating ips"
   type        = list(string)
   default     = []
 

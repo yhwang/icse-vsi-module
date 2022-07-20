@@ -42,3 +42,38 @@ name                   | Virtual Server name
 primary_ipv4_address   | Primary ipv4 address for virtual server
 floating_ip            | Floating IP if created
 secondary_floating_ips | List of secondary floating IPs
+
+
+## Example Usage
+
+```terraform
+module vsi_module {
+  source                           = "github.com/Cloud-Schematics/icse-vsi-module"
+  prefix                           = var.prefix
+  tags                             = var.tags
+  resource_group_id                = var.resource_group_id
+  zone                             = var.zone
+  vpc_id                           = var.vpc_id
+  primary_subnet_id                = var.primary_subnet_id
+  primary_security_group_ids       = var.primary_security_group_ids
+  secondary_subnets                = var.secondary_subnets
+  name                             = var.name
+  image_id                         = var.image_id
+  profile                          = var.profile
+  ssh_key_ids                      = var.ssh_key_ids
+  boot_volume_encryption_key       = var.boot_volume_encryption_key
+  user_data                        = var.user_data
+  allow_ip_spoofing                = var.allow_ip_spoofing
+  add_floating_ip                  = var.add_floating_ip
+  block_storage_volumes            = var.block_storage_volumes
+  secondary_floating_ips           = var.secondary_floating_ips
+  availability_policy_host_failure = var.availability_policy_host_failure
+  boot_volume_name                 = var.boot_volume_name
+  boot_volume_size                 = var.boot_volume_size
+  dedicated_host                   = var.dedicated_host
+  dedicated_host_group             = var.dedicated_host_group
+  default_trusted_profile_target   = var.default_trusted_profile_target
+  metadata_service_enabled         = var.metadata_service_enabled
+  placement_group                  = var.placement_group
+}
+```

@@ -9,7 +9,7 @@ output "id" {
 
 output "name" {
   description = "Virtual Server name"
-  value       = ibm_is_instance.vsi.id
+  value       = ibm_is_instance.vsi.name
 }
 
 output "primary_ipv4_address" {

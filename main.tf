@@ -2,12 +2,16 @@
 # Create Virtual Server Deployments
 ##############################################################################
 
+data "ibm_resource_group" "group" {
+  name = var.resource_group_id
+}
+
 resource "ibm_is_instance" "vsi" {
   count                            = var.instance_count
   name                             = "${var.prefix}-${var.name}-${count.index}"
   image                            = var.image_id
   profile                          = var.profile
-  resource_group_name              = var.resource_group_id
+  resource_group                   = data.ibm_resource_group.group.id
   vpc                              = var.vpc_id
   zone                             = var.zone
   user_data                        = var.user_data

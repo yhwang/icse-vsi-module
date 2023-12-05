@@ -45,7 +45,7 @@ resource "ibm_is_instance" "vsi" {
 resource "ibm_is_floating_ip" "vsi_fip" {
   count = var.instance_count
   name   = "${ibm_is_instance.vsi[count.index].name}-fip"
-  target = ibm_is_instance.vsi[count.index].primary_network_interface.0.id
+  target = ibm_is_instance.vsi[count.index].primary_network_interface[0].id
 }
 
 ##############################################################################

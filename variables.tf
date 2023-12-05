@@ -4,8 +4,8 @@
 
 variable "prefix" {
   description = "The prefix that you would like to prepend to your resources"
+  default     = "prestoworkshop"
   type        = string
-  default     = prestoworkshop
 }
 
 variable "tags" {
@@ -17,13 +17,13 @@ variable "tags" {
 variable "resource_group_id" {
   description = "Resource group ID for the VSI"
   type        = string
-  default     = Default
+  default     = "Default"
 }
 
 variable "zone" {
   description = "Zone where the VSI and Block Storage will be provisioned"
   type        = string
-  default     = us-east-1
+  default     = "us-east-1"
 }
 
 variable "instance_count" {
@@ -82,7 +82,7 @@ variable "secondary_subnets" {
 variable "name" {
   description = "Name of the server instance"
   type        = string
-  default     = vm
+  default     = "vm"
 }
 
 variable "image_id" {

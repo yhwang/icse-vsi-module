@@ -4,33 +4,30 @@
 
 output "id" {
   description = "Virtual Server ID"
-  value       = ibm_is_instance.vsi.id
+  value = {
+    for k, v in ibm_is_instance.vsi : k => v.id
+  }
 }
 
 output "name" {
   description = "Virtual Server name"
-  value       = ibm_is_instance.vsi.name
+  value = {
+    for k, v in ibm_is_instance.vsi : k => v.name
+  }
 }
 
 output "primary_ipv4_address" {
   description = "Primary ipv4 address for virtual server"
-  value       = ibm_is_instance.vsi.primary_network_interface.0.primary_ipv4_address
+  value = {
+    for k, v in ibm_is_instance.vsi : k => v.primary_network_interface.0.primary_ipv4_address
+  }
 }
 
 output "floating_ip" {
   description = "Floating IP if created"
-  value       = var.add_floating_ip == true ? ibm_is_floating_ip.vsi_fip[0].address : null
-}
-
-output "secondary_floating_ips" {
-  description = "List of secondary floating IPs"
-  value = [
-    for address in ibm_is_floating_ip.secondary_fip :
-    {
-      name = address.name
-      ip   = address.address
-    }
-  ]
+  value = {
+    for k, v in ibm_is_floating_ip.vsi_fip : k => v.address
+  }
 }
 
 ##############################################################################

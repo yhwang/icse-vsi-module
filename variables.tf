@@ -5,23 +5,25 @@
 variable "prefix" {
   description = "The prefix that you would like to prepend to your resources"
   type        = string
+  default     = prestoworkshop
 }
 
 variable "tags" {
   description = "List of Tags for the resource created"
   type        = list(string)
-  default     = null
+  default     = [ "workshop" ]
 }
 
 variable "resource_group_id" {
   description = "Resource group ID for the VSI"
   type        = string
-  default     = null
+  default     = Default
 }
 
 variable "zone" {
   description = "Zone where the VSI and Block Storage will be provisioned"
   type        = string
+  default     = us-east-1
 }
 
 variable "instance_count" {
@@ -80,6 +82,7 @@ variable "secondary_subnets" {
 variable "name" {
   description = "Name of the server instance"
   type        = string
+  default     = vm
 }
 
 variable "image_id" {
@@ -90,7 +93,7 @@ variable "image_id" {
 variable "profile" {
   description = "Type of machine profile for VSI. Use the command `ibmcloud is instance-profiles` to find available profiles in your region"
   type        = string
-  default     = "bx2-2x8"
+  default     = "bx2-8x32"
 }
 
 variable "ssh_key_ids" {

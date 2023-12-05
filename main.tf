@@ -55,7 +55,7 @@ resource "ibm_is_instance" "vsi" {
 resource "ibm_is_floating_ip" "vsi_fip" {
   for_each = ibm_is_instance.vsi
   count  = var.add_floating_ip == true ? 1 : 0
-  name   = "${var.prefix}-${each.name}-fip"
+  name   = "${each.name}-fip"
   target = each.primary_network_interface.0.id
 }
 

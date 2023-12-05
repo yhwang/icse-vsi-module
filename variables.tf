@@ -222,7 +222,7 @@ variable "default_trusted_profile_target" {
 variable "metadata_service_enabled" {
   description = "(Optional) Indicates whether the metadata service endpoint is available to the virtual server instance. Default value : false"
   type        = bool
-  default     = null
+  default     = false
 }
 
 variable "placement_group" {

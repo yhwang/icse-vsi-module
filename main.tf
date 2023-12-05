@@ -7,7 +7,7 @@ resource "ibm_is_instance" "vsi" {
   name                             = "${var.prefix}-${var.name}-${count.index}"
   image                            = var.image_id
   profile                          = var.profile
-  resource_group                   = var.resource_group_id
+  resource_group_name              = var.resource_group_id
   vpc                              = var.vpc_id
   zone                             = var.zone
   user_data                        = var.user_data
@@ -19,24 +19,10 @@ resource "ibm_is_instance" "vsi" {
   metadata_service_enabled         = var.metadata_service_enabled
   placement_group                  = var.placement_group
 
-  volumes = [
-    for volume in ibm_is_volume.vsi_storage :
-    volume.id
-  ]
-
   primary_network_interface {
     subnet            = var.primary_subnet_id
     security_groups   = var.primary_security_group_ids
     allow_ip_spoofing = var.allow_ip_spoofing
-  }
-
-  dynamic "network_interfaces" {
-    for_each = var.secondary_subnets
-    content {
-      subnet            = network_interfaces.value.id
-      security_groups   = lookup(network_interfaces, "security_group_ids", null)
-      allow_ip_spoofing = lookup(network_interfaces, "allow_ip_spoofing", null)
-    }
   }
 
   boot_volume {

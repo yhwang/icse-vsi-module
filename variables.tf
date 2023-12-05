@@ -24,6 +24,11 @@ variable "zone" {
   type        = string
 }
 
+variable "instance_count" {
+  description = "number of instance"
+  type        = number
+  default     = 1
+}
 ##############################################################################
 
 ##############################################################################

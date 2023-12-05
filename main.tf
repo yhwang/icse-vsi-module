@@ -3,7 +3,8 @@
 ##############################################################################
 
 resource "ibm_is_instance" "vsi" {
-  name                             = "${var.prefix}-${var.name}"
+  count                            = var.instance_count
+  name                             = "${var.prefix}-${var.name}-${count.index}"
   image                            = var.image_id
   profile                          = var.profile
   resource_group                   = var.resource_group_id
@@ -52,9 +53,10 @@ resource "ibm_is_instance" "vsi" {
 ##############################################################################
 
 resource "ibm_is_floating_ip" "vsi_fip" {
+  for_each = ibm_is_instance.vsi
   count  = var.add_floating_ip == true ? 1 : 0
-  name   = "${var.prefix}-${var.name}-fip"
-  target = ibm_is_instance.vsi.primary_network_interface.0.id
+  name   = "${var.prefix}-${each.name}-fip"
+  target = each.primary_network_interface.0.id
 }
 
 resource "ibm_is_floating_ip" "secondary_fip" {
